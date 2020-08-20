@@ -6,7 +6,7 @@ import './styles/styles.scss';
 import AppRouter from './routes/AppRouter';
 
 ReactDOM.render(
-    <AppRouter />,
+    <JournalApp />,
   document.getElementById('root')
 );
 
