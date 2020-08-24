@@ -14,7 +14,9 @@ const AuthRouter = () => {
                 dispatch(login(user.uid,user.displayName));
             }
         })
-    },[]);
+    },[dispatch]);
+    // eslint-disable-next-line
+
 
     return ( 
         <div className="auth__main">
