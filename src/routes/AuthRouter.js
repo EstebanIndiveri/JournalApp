@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Redirect,Route} from 'react-router-dom';
 import LoginScreen from '../components/authentication/LoginScreen';
 import RegisterScreen from '../components/authentication/RegisterScreen';
+import {firebase} from '../firebase/firabase-config'
+import { useDispatch } from 'react-redux';
+import { login } from '../actions/auth';
 
 const AuthRouter = () => {
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        firebase.auth().onAuthStateChanged(user=>{
+            if(user?.uid){
+                dispatch(login(user.uid,user.displayName));
+            }
+        })
+    },[]);
+
     return ( 
         <div className="auth__main">
             <div className="auth__box-container">

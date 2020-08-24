@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login, startLoginEmailPassword, startGoogleLogin } from '../../actions/auth';
 
 const LoginScreen = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const {loading} = useSelector(state => state.ui);
     const[formValue,handleInputChange]=useForm({
         email:'',
         password:''
@@ -45,6 +46,7 @@ const LoginScreen = () => {
                 />
                 <button
                 className="btn btn-primary btn-block"
+                disabled={loading}
                 type="submit"
                 >Login</button>
                 <div className="auth__social-networks">
