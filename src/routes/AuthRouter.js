@@ -1,31 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Switch, Redirect,Route} from 'react-router-dom';
 import LoginScreen from '../components/authentication/LoginScreen';
 import RegisterScreen from '../components/authentication/RegisterScreen';
-import {firebase} from '../firebase/firabase-config'
-import { useDispatch } from 'react-redux';
-import { login } from '../actions/auth';
+
 
 const AuthRouter = () => {
-    const dispatch = useDispatch();
-    useEffect(()=>{
-        firebase.auth().onAuthStateChanged(user=>{
-            if(user?.uid){
-                dispatch(login(user.uid,user.displayName));
-            }
-        })
-    },[dispatch]);
-    // eslint-disable-next-line
-
-
+ 
     return ( 
         <div className="auth__main">
             <div className="auth__box-container">
                 <Switch>
+                // eslint-disable-next-line
                     <Route exact path="/auth/login" component={LoginScreen}/>
                     // eslint-disable-next-line
                     <Route exact path="/auth/register" component={RegisterScreen}/>
-                    // eslint-disable-next-line
 
                     <Redirect to="/auth/login"/>
                 </Switch>
