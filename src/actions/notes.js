@@ -2,6 +2,7 @@ import { db } from "../firebase/firabase-config";
 import { types } from "../types/types";
 import { loadNotes } from "../helpers/loadNotes";
 import Swal from 'sweetalert2';
+import { fileUpload } from "../helpers/fileUpload";
 export const startNewNote=()=>{
     return async(dispatch,getState)=>{
         const {uid}=getState().auth;
@@ -63,8 +64,8 @@ export const refreshNotes=(id,note)=>({
 export const startUploading=(file)=>{
     return async(dipatch,getState)=>{
         const {active:activeNote}=getState().notes;
-        console.log(file);
-        console.log(activeNote);
-
+        
+        const fileUrl=await fileUpload(file);
+        console.log(fileUrl);
     }
 }
