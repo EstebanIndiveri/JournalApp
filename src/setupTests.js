@@ -6,3 +6,8 @@ import Swal from 'sweetalert2';
  
 Enzyme.configure({ adapter: new Adapter() });
 expect.addSnapshotSerializer(createSerializer({mode: 'deep'}));
+
+jest.mock('sweetalert2',()=>({
+    fire:jest.fn(),
+    close:jest.fn()
+}))
